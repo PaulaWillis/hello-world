@@ -13,7 +13,7 @@ async void Button1_Click(object sender, EventArgs e)
 ```
 
 ```cobol
-method-id Button1_Click async-void(sender as object, e as type EventArgs).
+method-id Button1_Click(sender as object, e as type EventArgs) async-void.
     set Button1::Text = "Processing..."
     invoke await type Task::Delay(1000)
     set Button1::Text = "Done"
@@ -29,12 +29,13 @@ async void WaitForInfo(Task t)
 ```
 
 ```cobol
-method-id WaitForInfo(t as type Task) async-void
+method-id WaitForInfo(t as type Task) async-void.
     invoke await t
 end method.
 ```
 
-### Return types
+### Return type void/empty
+This is a new concept in COBOL
 ```csharp
 async void Process()
 {
@@ -43,7 +44,7 @@ async void Process()
 ```
 
 ```cobol
-method-id Process() async-void
+method-id Process() async-void.
     declare records = await FetchRecords()
 end method.
 ```
@@ -81,7 +82,7 @@ end method.
 
 Async methods that have a return value always need to specify awaitable return type.
 ```cobol
-method-id FetchRecordsAsync async yielding return-value as string occurs any.
+method-id FetchRecordsAsync yielding return-value as string occurs any async.
     invoke await Task.Delay(1000)
     set return-value to table of ("a", "b", "c")
 end method.
@@ -163,7 +164,7 @@ method-id Process async-void.
     invoke await new MyAwaitable()
 end method.
 
-class-id MyAwaitable
+class-id MyAwaitable.
 method-id GetAwaiter.
 procedure division returning return-value as type INotifyCompletion.
     goback
