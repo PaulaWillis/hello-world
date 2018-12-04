@@ -157,7 +157,7 @@ A warning could be generated if an async method does not end with *Async* or a n
 A warning could be generated if an async method does not use the await keyword anywhere.
 
 ## Awaitable types - not yet implemented
-The await keyword is syntantic sugar for calling `GetAwaiter()` on the expression being awaited which returns an `INotifyCompletion`. This means any object can be awaited as long as it exposes a method called `GetAwaiter` which returns a valuetype or class that implements `INotifyCompletion`.
+The await keyword is syntactic sugar for calling `GetAwaiter()` on the expression being awaited which returns an `INotifyCompletion`. This means any object can be awaited as long as it exposes a method called `GetAwaiter` which returns a valuetype or class that implements `INotifyCompletion`.
 
 ```cobol
 method-id Process async-void.
@@ -174,3 +174,9 @@ end class.
 
 **Edge case:** Extension methods named `GetAwaiter` should also be considered. The `
 Microsoft.VisualStudio.Threading` assembly defines many of these so that various objects can be awaited such as a `TaskScheduler` or a `WaitHandle`.
+
+## History
+
+Nov 2018 Ted John Initial revision. Based on 4.0 testing.
+
+30 Nov 2018 Robert Sales updated syntax, with new bits eg async-void being added.
